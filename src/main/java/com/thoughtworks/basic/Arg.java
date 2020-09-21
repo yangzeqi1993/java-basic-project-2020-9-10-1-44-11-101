@@ -1,5 +1,6 @@
 package com.thoughtworks.basic;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 public class Arg {
@@ -17,6 +18,19 @@ public class Arg {
     }
 
     public String getValue() {
+        return value;
+    }
+
+    public Object parseValue(){
+        if(flag.equals("l")){
+            return value;
+        }
+        if(flag.equals("p")){
+            return value;
+        }
+        if(flag.equals("d")){
+            return value;
+        }
         return value;
     }
 
