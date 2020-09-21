@@ -2,7 +2,10 @@ package com.thoughtworks.basic;
 
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 public class ArgsTest {
@@ -11,14 +14,16 @@ public class ArgsTest {
         //given
         String argsText = "-l true -p 8080 -d usr/logs";
         Args args = new Args(argsText);
+        Set<FlagSchema> flagSchemas = new HashSet<>();
+        Schema schema = new Schema(flagSchemas);
 
         //when
-        List<Arg> keyValuesPairs = args.scan();
+        List<Arg> keyValuesPairs = args.scan(schema);
 
         //then
         assertEquals(3, keyValuesPairs.size());
-        assertEquals(new Arg("l true"), keyValuesPairs.get(0));
-        assertEquals(new Arg("p 8080"), keyValuesPairs.get(1));
-        assertEquals(new Arg("d usr/logs"), keyValuesPairs.get(2));
+        assertEquals(new Arg("l true",schema), keyValuesPairs.get(0));
+        assertEquals(new Arg("p 8080",schema), keyValuesPairs.get(1));
+        assertEquals(new Arg("d usr/logs",schema), keyValuesPairs.get(2));
     }
 }

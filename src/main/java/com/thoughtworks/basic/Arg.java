@@ -1,16 +1,21 @@
 package com.thoughtworks.basic;
 
-import java.lang.reflect.InvocationTargetException;
+import com.thoughtworks.basic.Type.BooleanType;
+import com.thoughtworks.basic.Type.IntegerType;
+import com.thoughtworks.basic.Type.StringType;
+
 import java.util.Objects;
 
 public class Arg {
     private String flag;
     private String value;
+    private Object type;
 
-    public Arg(String argPair){
+    public Arg(String argPair, Schema schema){
         String[] argElement = argPair.split(" ");
         this.flag = argElement[0];
         this.value = argElement[1];
+        this.type = schema.getTypeOf(this.flag);
     }
 
     public String getFlag() {
@@ -21,15 +26,19 @@ public class Arg {
         return value;
     }
 
+    public Object getType() {
+        return type;
+    }
+
     public Object parseValue(){
         if(flag.equals("l")){
-            return value;
+            return new BooleanType().getType(value);
         }
         if(flag.equals("p")){
-            return value;
+            return new IntegerType().getType(value);
         }
         if(flag.equals("d")){
-            return value;
+            return new StringType().getType(value);
         }
         return value;
     }

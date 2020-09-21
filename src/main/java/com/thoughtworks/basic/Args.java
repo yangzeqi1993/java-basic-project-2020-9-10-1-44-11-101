@@ -12,7 +12,7 @@ public class Args {
         this.argsText = argsText;
     }
 
-    public List<Arg> scan(){
+    public List<Arg> scan(Schema schema){
         String prefix = "-";
         List<String> keyValues = Arrays.asList(argsText.split(prefix));
         keyValues = keyValues.stream()
@@ -21,7 +21,7 @@ public class Args {
 
         argPairs = keyValues.subList(1, keyValues.size())
                 .stream()
-                .map(Arg::new)
+                .map(argPair -> new Arg(argPair,schema))
                 .collect(Collectors.toList());
         return argPairs;
     }
