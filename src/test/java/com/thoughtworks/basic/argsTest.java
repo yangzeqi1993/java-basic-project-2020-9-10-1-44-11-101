@@ -16,10 +16,10 @@ public class argsTest {
         Args args = new Args(argsText);
 
         //when
-        List<String> keyValues = args.scan();
+        List<Arg> keyValuesPairs = args.scan();
 
         //then
-        assertEquals(3, keyValues.size());
-        assertTrue(keyValues.contains("l true"));
+        assertEquals(3, keyValuesPairs.size());
+        assertTrue(keyValuesPairs.contains(new Arg("l true")));
     }
 }

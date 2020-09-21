@@ -1,31 +1,29 @@
 package com.thoughtworks.basic;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Args {
     private String argsText;
+    private List<Arg> argPairs;
 
     public Args(String argsText){
         this.argsText = argsText;
     }
 
-    public List<String> scan(){
+    public List<Arg> scan(){
         String prefix = "-";
         List<String> keyValues = Arrays.asList(argsText.split(prefix));
         keyValues = keyValues.stream()
                 .map(String::trim)
                 .collect(Collectors.toList());
-        return keyValues.subList(1, keyValues.size());
+
+        argPairs = keyValues.subList(1, keyValues.size())
+                .stream()
+                .map(Arg::new)
+                .collect(Collectors.toList());
+        return argPairs;
     }
 
-//    public Set<FlagSchema> format(List<String> args){
-//        Set <FlagSchema> flagSchemas = new HashSet<>();
-//        args = args.stream()
-//                .map(String::trim)
-//                .collect(Collectors.toList());
-//    }
 }

@@ -16,4 +16,16 @@ public class FlagSchema {
     public Object getType(){
         return type;
     }
+
+    public Object getDefaultValue(String flag){
+        switch(flag){
+            case "l":
+                return String.valueOf(false);
+            case "p":
+                return String.valueOf(0);
+            case "d":
+                return "";
+        }
+        return null;
+    }
 }
