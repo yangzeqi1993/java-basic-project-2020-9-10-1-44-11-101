@@ -1,7 +1,5 @@
 package com.thoughtworks.basic;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class Arg {
@@ -22,14 +20,13 @@ public class Arg {
         return value;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Arg arg = (Arg) o;
-        return Objects.equals(flag, arg.flag) &&
-                Objects.equals(value, arg.value);
+        return flag.equals(arg.flag) &&
+                value.equals(arg.value);
     }
 
     @Override

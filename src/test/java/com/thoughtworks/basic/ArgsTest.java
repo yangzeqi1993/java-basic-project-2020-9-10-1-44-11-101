@@ -2,13 +2,10 @@ package com.thoughtworks.basic;
 
 import org.junit.Test;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import static org.junit.Assert.*;
 
-public class argsTest {
+public class ArgsTest {
     @Test
     public void should_return_string_list_when_scan_given_string(){
         //given
@@ -20,6 +17,8 @@ public class argsTest {
 
         //then
         assertEquals(3, keyValuesPairs.size());
-        assertTrue(keyValuesPairs.contains(new Arg("l true")));
+        assertEquals(new Arg("l true"), keyValuesPairs.get(0));
+        assertEquals(new Arg("p 8080"), keyValuesPairs.get(1));
+        assertEquals(new Arg("d usr/logs"), keyValuesPairs.get(2));
     }
 }
