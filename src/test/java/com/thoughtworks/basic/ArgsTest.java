@@ -15,6 +15,9 @@ public class ArgsTest {
         String argsText = "-l true -p 8080 -d usr/logs";
         Args args = new Args(argsText);
         Set<FlagSchema> flagSchemas = new HashSet<>();
+        flagSchemas.add(new FlagSchema("l", Boolean.TYPE));
+        flagSchemas.add(new FlagSchema("p", Integer.TYPE));
+        flagSchemas.add(new FlagSchema("d", String.class.getTypeName()));
         Schema schema = new Schema(flagSchemas);
 
         //when
